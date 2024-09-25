@@ -21,24 +21,27 @@ cd EaseTalk-Chatbot
 ```
 
 ## Backend Setup (Flask)
-
-1. Create a virtual environment:
+1. Navigate to the flask folder:
+   ```bash
+   cd backend_flask
+   ```
+2. Create a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Create a `.env` file in the root directory and add:
+4. Create a `.env` file in the root directory and add:
    ```
    API_KEY=your-gemini-api-key
    ```
 
-4. Run Flask backend:
+5. Run Flask backend:
    ```bash
    flask run
    ```
@@ -47,7 +50,7 @@ cd EaseTalk-Chatbot
 
 1. Navigate to the authentication folder:
    ```bash
-   cd auth
+   cd backend_node
    ```
 
 2. Install Node.js dependencies:

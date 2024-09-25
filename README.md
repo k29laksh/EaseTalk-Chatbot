@@ -15,8 +15,7 @@ EaseTalk-Chatbot is an AI-powered chatbot application using Gemini AI, with a Fl
 Clone the repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/k29laksh/EaseTalk-Chatbot
-.git
+git clone https://github.com/k29laksh/EaseTalk-Chatbot.git
 cd EaseTalk-Chatbot
 
 ```

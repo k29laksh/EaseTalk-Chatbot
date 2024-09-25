@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/users/login', { email, password });
+      const response = await axios.post('https://easetalk-chatbot.onrender.com/api/v1/users/login', { email, password });
       setUser(response.data);
       toast.success('Login successful!');
       navigate('/');
@@ -33,7 +33,7 @@ export const UserProvider = ({ children }) => {
 
   const signup = async (username, email, password) => {
     try {
-      await axios.post('http://localhost:8000/api/v1/users/signup', { username, email, password });
+      await axios.post('https://easetalk-chatbot.onrender.com/api/v1/users/signup', { username, email, password });
       toast.success('Signup successful! Please log in.');
       navigate('/login');
     } catch (error) {

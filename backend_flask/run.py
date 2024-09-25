@@ -1,3 +1,3 @@
-import backend_flask.main as main
+import  main
 
 app=main()

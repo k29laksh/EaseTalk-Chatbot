@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
       toast.success('Login successful!');
       navigate('/');
     } catch (error) {
-      toast.error('Login failed. Please try again.');
+      toast.error('Login failed. Please check your Credential');
     }
   };
 
@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
       toast.success('Signup successful! Please log in.');
       navigate('/login');
     } catch (error) {
-      toast.error('Signup failed. Please try again.');
+      toast.error('Signup failed. User already exist');
     }
   };
 

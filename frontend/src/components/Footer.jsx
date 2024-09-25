@@ -34,7 +34,7 @@ const Chat = () => {
     setUserInput(''); 
     setIsLoading(true); 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/chat', { message: userInput });
+      const response = await axios.post('https://easetalk-chatbot-flas.onrender.com/chat', { message: userInput });
       const aiResponse = response.data.response;
 
       setConversation([...newConversation, { sender: 'ai', message: aiResponse }]);

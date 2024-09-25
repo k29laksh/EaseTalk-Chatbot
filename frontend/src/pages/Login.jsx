@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const { login } = useContext(UserContext);
   const [formData, setFormData] = useState({ email: '', password: '' });
-
+  const [loading, setLoading] = useState(false); 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -14,12 +14,17 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
       toast.error('Please fill out all fields.');
     } else {
-      login(formData.email, formData.password);
+      setLoading(true); 
+      try {
+        await login(formData.email, formData.password);
+      } catch (error) {
+      }
+      setLoading(false); 
     }
   };
 
@@ -54,9 +59,10 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 my-10 rounded hover:bg-blue-700 transition duration-200"
+            disabled={loading} 
+            className={`w-full py-2 px-4 my-10 rounded ${loading ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white transition duration-200`}
           >
-            Log In
+            {loading ? 'Logging in...' : 'Log In'} 
           </button>
         </div>
       </form>

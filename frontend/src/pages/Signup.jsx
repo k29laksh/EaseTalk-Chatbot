@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 const Signup = () => {
   const { signup } = useContext(UserContext);
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const [passwordError, setPasswordError] = useState('');
+  const [loading, setLoading] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,20 +14,37 @@ const Signup = () => {
       ...formData,
       [name]: value,
     });
+
+    if (name === 'password' && passwordError) {
+      setPasswordError('');
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.password.length < 8) {
+      setPasswordError('Password must be at least 8 characters long.');
+      return;
+    }
+
     if (!formData.username || !formData.email || !formData.password) {
       toast.error('Please fill out all fields.');
-    } else {
-      signup(formData.username, formData.email, formData.password);
+      return; 
+    }
+
+    setLoading(true); 
+    try {
+      await signup(formData.username, formData.email, formData.password);
+    } catch (error) {
+    } finally {
+      setLoading(false); 
     }
   };
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <form onSubmit={handleSubmit} className="bg-white p-6  border rounded shadow-md w-[370px]">
+      <form onSubmit={handleSubmit} className="bg-white p-6 border rounded shadow-md w-[370px]">
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-4">Sign Up</h2>
         <div className="flex flex-col">
           <div className="mb-3">
@@ -34,7 +53,7 @@ const Signup = () => {
               type="text"
               id="username"
               name="username"
-              value={formData.username}
+              value={formData.username} 
               onChange={handleChange}
               placeholder="Username"
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm"
@@ -46,7 +65,7 @@ const Signup = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={formData.email} 
               onChange={handleChange}
               placeholder="Email"
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm"
@@ -58,17 +77,19 @@ const Signup = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
+              value={formData.password} 
               onChange={handleChange}
               placeholder="Password"
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm"
             />
+            {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 my-10 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200"
+            disabled={loading} 
+            className={`w-full py-2 px-4 my-10 rounded ${loading ? 'bg-gray-500' : 'bg-blue-600 hover:bg-blue-700'} text-white transition duration-200`}
           >
-            Sign Up
+            {loading ? 'Signing up...' : 'Sign Up'}
           </button>
         </div>
       </form>

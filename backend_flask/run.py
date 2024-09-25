@@ -1,3 +1,3 @@
-import  main
+from main import create_app
 
-app=main()
+app=create_app()

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const { signup } = useContext(UserContext);
@@ -84,6 +85,13 @@ const Signup = () => {
             />
             {passwordError && <p className="text-red-500 text-sm mt-1">{passwordError}</p>}
           </div>
+          <p className="flex items-center gap-1">
+          Already have an account?{" "}
+
+            <Link to={'/login'} className="text-blue-600 underline font- cursor-pointer">
+              login
+            </Link>
+          </p>
           <button
             type="submit"
             disabled={loading} 

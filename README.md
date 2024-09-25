@@ -1,6 +1,10 @@
 # EaseTalk-Chatbot
-
 EaseTalk-Chatbot is an AI-powered chatbot application using Gemini AI, with a Flask backend, React frontend, and Node.js authentication system.
+## Deployment Links:
+Frontend (Netlify): https://ease-talk-ai.netlify.app
+
+Backends (Render): Both backends are hosted on Render to handle the AI integration and authentication processes.
+
 
 ## Table of Contents
 - [Installation](#installation)
